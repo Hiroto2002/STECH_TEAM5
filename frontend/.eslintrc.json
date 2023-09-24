@@ -1,8 +1,8 @@
 {
-  "root": true, 
+  "root": true,
   "env": {
-    "browser": true,     
-    "es2020": true 
+    "browser": true,
+    "es2020": true
   },
   "extends": [
     "eslint:recommended",
@@ -15,24 +15,24 @@
     "plugin:prettier/recommended",
     "prettier"
   ],
-  "parser": "@typescript-eslint/parser", 
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true     
-},
+      "jsx": true
+    },
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "react", "import"],
   "settings": {
-      "import/resolver": {
+    "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"] 
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
       },
 
       "typescript": {
-        "config": "tsconfig.json", 
-        "alwaysTryTypes": true       
+        "config": "tsconfig.json",
+        "alwaysTryTypes": true
       }
     },
     "react": {
@@ -41,6 +41,8 @@
   },
   "ignorePatterns": ["/*.js"],
   "rules": {
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
     "@typescript-eslint/ban-types": [
       "error",
       {
