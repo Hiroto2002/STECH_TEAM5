@@ -105,6 +105,7 @@ const onCreateRoom = async (
   }
 }
 
+// roomへのjoinは成功してるけど、ホワイトボードに飛べてない。
 const onJoinRoom = async (roomID: string, roomToken: string) => {
   const whiteWebSdk = new WhiteWebSdk({
     appIdentifier: process.env.NEXT_PUBLIC_AGORA_APP_IDENTIFIER as string,
