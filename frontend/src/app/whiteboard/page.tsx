@@ -70,6 +70,8 @@ const onGetRoomToken = async (
     return { props: { data: 'Internal Server Error' } }
   }
 }
+
+// ルーム作成メソッド。sdkトークンを設定する必要がある。sdkトークンはagoraコンソールのプロジェクトのwhiteboardから取れる
 const onCreateRoom = async (
   setData: Dispatch<SetStateAction<string | CreateWhiteBoardResponse>>,
 ) => {
