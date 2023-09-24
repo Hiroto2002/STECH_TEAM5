@@ -22,7 +22,7 @@ export default function WhiteBoard() {
       </Head>
       <button onClick={() => onCreateRoom(setData)}>ルーム作成</button>
       <button onClick={() => onGetRoomToken(data.uuid, setRoomID)}>
-        ルームに参加申請
+        ルームに参加のためのトークンを発行
       </button>
       <button onClick={() => onJoinRoom(data.uuid, roomApplicationToken)}>
         ルームに参加
