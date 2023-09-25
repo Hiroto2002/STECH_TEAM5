@@ -1,10 +1,10 @@
 'use client'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 import { Button } from './components/Button'
 
-const Videocall = dynamic(() => import('../components/AgoraTest'), {
-  ssr: false,
-})
+// const Videocall = dynamic(() => import('../components/AgoraTest'), {
+//   ssr: false,
+// })
 
 export default function Home() {
   const BUTTONS = [
