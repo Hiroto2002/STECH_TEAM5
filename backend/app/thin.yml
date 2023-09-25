@@ -1,0 +1,8 @@
+pid: tmp/pids/thin.pid
+log: log/thin.log
+threaded: true
+daemonize: true
+no-epoll: true
+timeout: 30
+wait: 30
+max_conns: 1024
