@@ -1,13 +1,6 @@
 'use client'
 import Head from 'next/head'
-import {
-  Dispatch,
-  SetStateAction,
-  use,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { WhiteWebSdk } from 'white-web-sdk'
 
 type CreateWhiteBoardResponse = {
@@ -31,30 +24,29 @@ export default function WhiteBoard() {
   const [roomApplicationToken, setRoomID] = useState<string>('')
 
   // roomへのjoinは成功してるけど、ホワイトボードに飛べてない。
-const onJoinRoom = async (roomID: string, roomToken: string) => {
-  const whiteWebSdk = new WhiteWebSdk({
-    appIdentifier: process.env.NEXT_PUBLIC_AGORA_APP_IDENTIFIER as string,
-    region: 'us-sv',
-  })
+  const onJoinRoom = async (roomID: string, roomToken: string) => {
+    const whiteWebSdk = new WhiteWebSdk({
+      appIdentifier: process.env.NEXT_PUBLIC_AGORA_APP_IDENTIFIER as string,
+      region: 'us-sv',
+    })
 
-  const joinRoomParams = {
-    uuid: roomID,
-    uid: 'user uid 2',
-    roomToken: roomToken,
+    const joinRoomParams = {
+      uuid: roomID,
+      uid: 'user uid 2',
+      roomToken: roomToken,
+    }
+
+    await whiteWebSdk
+      .joinRoom(joinRoomParams)
+      .then(function (room) {
+        // room.bindHtmlElement(document.getElementById('whiteboard'))
+        const whiteboardElement = document.getElementById('whiteboard')
+        room.bindHtmlElement(whiteboardElement as HTMLDivElement)
+      })
+      .catch(function (err) {
+        console.error(err)
+      })
   }
-
-  await whiteWebSdk
-    .joinRoom(joinRoomParams)
-    .then(function (room) {
-      // room.bindHtmlElement(document.getElementById('whiteboard'))
-      const whiteboardElement = document.getElementById('whiteboard')
-      room.bindHtmlElement(whiteboardElement as HTMLDivElement)
-    })
-    .catch(function (err) {
-      console.error(err)
-    })
-}
-
 
   return (
     <>
@@ -80,7 +72,6 @@ const onJoinRoom = async (roomID: string, roomToken: string) => {
     </>
   )
 }
-
 
 const onGetRoomToken = async (
   roomID: string,
