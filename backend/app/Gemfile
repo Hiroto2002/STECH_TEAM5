@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'sinatra-reloader'
+gem 'unicorn'
+gem 'mysql2'
+gem 'bcrypt'
+gem 'bson_ext'
+gem 'rack'
+gem 'puma'
+gem 'faye-websocket'
+gem "thin"
