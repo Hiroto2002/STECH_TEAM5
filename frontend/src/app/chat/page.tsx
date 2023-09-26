@@ -8,28 +8,30 @@ const Chat = () => {
   const [formMessage, setFormMessage] = useState('')
   const [sentMessage, setSentMessage] = useState('')
   const [messages, setMessages] = useState<string[]>([''])
+  const inputRef = useRef<HTMLInputElement>(null)
 
-  const sendData = (event: any) => {
-    event.preventDefault()
-    setFormMessage(event.target[0].value)
+  const sendData = () => {
+    if (inputRef.current == null) return
+    const text = inputRef.current.value
+    console.log(inputRef.current.value)
+    setFormMessage(text)
     const sendData = {
       type: 'message',
-      body: event.target[0].value,
+      body: text,
     }
     socketRef.current?.send(JSON.stringify(sendData))
   }
 
   useEffect(() => {
     socketRef.current = new WebSocket(
-      'wss://www.mizuhugu35.com/v1/connect?uid=user02&uname=Maeda',
+      'wss://www.mizuhugu35.com/v1/connect?uid=user02&uname=Maed',
     )
     socketRef.current.onopen = function () {
       setIsConnected(true)
       console.log('Connected')
       const echo = setInterval(() => {
         socketRef.current?.send(JSON.stringify({ type: 'echo', body: 'echo' }))
-        console.log('echo');
-        
+        console.log('echo')
       }, 30000)
       return () => clearInterval(echo)
     }
@@ -57,10 +59,8 @@ const Chat = () => {
   return (
     <>
       <h1>WebSocket is connected : {`${isConnected}`}</h1>
-      <form onSubmit={sendData}>
-        <input type="text" name="socketData" />
-        <button type="submit">Server に送信</button>
-      </form>
+      <input type="text" name="socketData" ref={inputRef} />
+      <button onClick={sendData}>Server に送信</button>
       <h3>form message: {formMessage}</h3>
       <h3>sent message: {sentMessage}</h3>
       {messages.map((message, index) => (
