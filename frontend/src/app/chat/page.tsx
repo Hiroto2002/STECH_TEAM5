@@ -1,5 +1,6 @@
 'use client'
 
+import { SideBar } from '@/components/SideBar'
 import React, { useEffect, useRef, useState } from 'react'
 
 const Chat = () => {
@@ -57,7 +58,8 @@ const Chat = () => {
   }, [])
 
   return (
-    <>
+    <div style={{display:"flex"}}>
+      <SideBar />
       <h1>WebSocket is connected : {`${isConnected}`}</h1>
       <input type="text" name="socketData" ref={inputRef} />
       <button onClick={sendData}>Server に送信</button>
@@ -66,7 +68,7 @@ const Chat = () => {
       {messages.map((message, index) => (
         <h3 key={index + 1}>{message}</h3>
       ))}
-    </>
+    </div>
   )
 }
 
