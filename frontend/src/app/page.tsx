@@ -1,29 +1,13 @@
 'use client'
+import { Button } from './_components/Button'
+import { NAV_BUTTONS } from '@/constant/NAV_BUTTONS'
 // import dynamic from 'next/dynamic'
-import { Button } from './components/Button'
 
 // const Videocall = dynamic(() => import('../components/AgoraTest'), {
 //   ssr: false,
 // })
 
 export default function Home() {
-  const BUTTONS = [
-    {
-      title: 'whiteboard',
-      href: 'whiteboard',
-      src: '/whiteboard.svg',
-    },
-    {
-      title: 'videocall',
-      href: 'videocall',
-      src: '/videocall.svg',
-    },
-    {
-      title: 'chat',
-      href: 'chat',
-      src: '/chat.svg',
-    },
-  ]
   return (
     <div
       style={{
@@ -34,7 +18,7 @@ export default function Home() {
         justifyContent: 'space-evenly',
       }}
     >
-      {BUTTONS.map((button) => (
+      {NAV_BUTTONS.map((button) => (
         <Button
           key={button.title}
           title={button.title}
