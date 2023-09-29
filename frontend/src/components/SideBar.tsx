@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
-import { useRouter } from 'next/navigation'
-import { usePathname } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { NAV_BUTTONS } from '@/constant/NAV_BUTTONS'
 
 export const SideBar = () => {
@@ -14,7 +13,7 @@ export const SideBar = () => {
   const sortNav = NAV_BUTTONS.sort((a) => {
     if (IsActive(a.href)) {
       return -1
-    }else{
+    } else {
       return 0
     }
   })
@@ -26,29 +25,32 @@ export const SideBar = () => {
         flexDirection: 'column',
         background: '#fff',
         height: '100vh',
-        padding: 10,
       }}
     >
       {sortNav.map((button) => (
-        <div
+        <button
           key={button.title}
           onClick={() => handlePushRouter(button.href)}
           style={
-            IsActive(button.href)?{
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 15,
-              borderBottom: '2px solid #ccc',
-            }:{
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 15,
-            }
-            }
+            IsActive(button.href)
+              ? {
+                  cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 15,
+                  border: 'none',
+                  borderBottom: '2px solid #ccc',
+                }
+              : {
+                  cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 15,
+                  border: 'none',
+                }
+          }
         >
           <div
             style={{
@@ -58,11 +60,12 @@ export const SideBar = () => {
               justifyContent: 'center',
               alignItems: 'center',
               backgroundColor: '#fff',
+              padding: 10,
             }}
           >
             <img src={button.src} width={30} height={30} alt="button" />
           </div>
-        </div>
+        </button>
       ))}
     </div>
   )

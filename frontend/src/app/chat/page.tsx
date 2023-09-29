@@ -1,7 +1,7 @@
 'use client'
 
-import { SideBar } from '@/components/SideBar'
 import React, { useEffect, useRef, useState } from 'react'
+import { SideBar } from '@/components/SideBar'
 
 const Chat = () => {
   const socketRef = useRef<WebSocket>()
@@ -58,7 +58,7 @@ const Chat = () => {
   }, [])
 
   return (
-    <div style={{display:"flex"}}>
+    <div style={{ display: 'flex' }}>
       <SideBar />
       <h1>WebSocket is connected : {`${isConnected}`}</h1>
       <input type="text" name="socketData" ref={inputRef} />

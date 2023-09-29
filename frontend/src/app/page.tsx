@@ -1,14 +1,13 @@
 'use client'
+import { Button } from './_components/Button'
 import { NAV_BUTTONS } from '@/constant/NAV_BUTTONS'
 // import dynamic from 'next/dynamic'
-import { Button } from './_components/Button'
 
 // const Videocall = dynamic(() => import('../components/AgoraTest'), {
 //   ssr: false,
 // })
 
 export default function Home() {
-  
   return (
     <div
       style={{

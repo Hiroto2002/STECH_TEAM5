@@ -1,6 +1,6 @@
 'use client'
-import { SideBar } from '@/components/SideBar'
 import dynamic from 'next/dynamic'
+import { SideBar } from '@/components/SideBar'
 
 const WhiteBoard = dynamic(() => import('./_components/WhiteBoard'), {
   ssr: false,
@@ -9,7 +9,7 @@ const WhiteBoard = dynamic(() => import('./_components/WhiteBoard'), {
 export default function Page() {
   return (
     <>
-      <SideBar/>
+      <SideBar />
       <WhiteBoard />
     </>
   )
