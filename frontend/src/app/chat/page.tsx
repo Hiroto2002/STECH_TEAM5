@@ -107,7 +107,7 @@ const Chat = ({ searchParams }: { searchParams: { name: string } }) => {
 
   return (
     <div style={{ display: 'flex' }}>
-      <SideBar />
+      <SideBar userName={name} />
       <div
         style={{
           display: 'flex',

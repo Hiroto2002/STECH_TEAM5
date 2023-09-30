@@ -3,7 +3,10 @@ import React from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { NAV_BUTTONS } from '@/constant/NAV_BUTTONS'
 
-export const SideBar = () => {
+type Props = {
+  userName: string
+}
+export const SideBar = ({ userName }: Props) => {
   const router = useRouter()
   const IsActive = (pathname: string) => usePathname() === pathname
   const handlePushRouter = (pathname: string) => {
@@ -30,7 +33,7 @@ export const SideBar = () => {
       {sortNav.map((button) => (
         <button
           key={button.title}
-          onClick={() => handlePushRouter(button.href)}
+          onClick={() => handlePushRouter(`${button.href}?name=${userName}`)}
           style={
             IsActive(button.href)
               ? {
