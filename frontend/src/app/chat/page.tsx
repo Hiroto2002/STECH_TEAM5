@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { SideBar } from '@/components/SideBar'
 import { useRouter } from 'next/navigation'
+import { SideBar } from '@/components/SideBar'
 
 type DB_Response_Chat = {
   user_id: string
@@ -11,10 +11,6 @@ type DB_Response_Chat = {
   created_at: string
 }
 
-type Message = {
-  message: string
-  user: string
-}
 type SocketData = {
   body: string
   from_type: 'user'
@@ -32,10 +28,6 @@ const Chat = ({ searchParams }: { searchParams: { name: string } }) => {
   const socketRef = useRef<WebSocket>()
   const chatRef = useRef<HTMLInputElement>(null)
   const [messages, setMessages] = useState<DB_Response_Chat[]>([])
-
-  const handleSetMessages = (data: DB_Response_Chat) => {
-    setMessages((prev) => [...prev, data])
-  }
 
   const sendData = () => {
     if (chatRef.current == null) return
@@ -101,12 +93,9 @@ const Chat = ({ searchParams }: { searchParams: { name: string } }) => {
       setMessages((prev) => [...prev, message])
     }
 
-    // fetchChatDB().then((data) => {
-    //   console.log(data)
-
-    //   const messages = data.map((message) => message.message)
-    //   setMessages((prev) => [...prev, ...messages])
-    // })
+    fetchChatDB().then((data) => {
+      setMessages((prev) => [...prev, ...data])
+    })
 
     return () => {
       if (socketRef.current == null) {
@@ -158,9 +147,9 @@ const Chat = ({ searchParams }: { searchParams: { name: string } }) => {
                 >
                   {message.user_name}
                 </p>
-                <p style={{color:"#aaa"}}>{message.created_at}</p>
+                <p style={{ color: '#aaa' }}>{message.created_at}</p>
               </div>
-              <p style={{fontSize:"1.3rem"}}>{message.message}</p>
+              <p style={{ fontSize: '1.3rem' }}>{message.message}</p>
             </div>
           ))}
         <div
