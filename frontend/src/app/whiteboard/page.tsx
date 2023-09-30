@@ -6,11 +6,17 @@ const WhiteBoard = dynamic(() => import('./_components/WhiteBoard'), {
   ssr: false,
 })
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { name: string }
+}) {
+  const { name } = searchParams
+
   return (
-    <>
-      <SideBar />
+    <div style={{ display: 'flex' }}>
+      <SideBar userName={name} />
       <WhiteBoard />
-    </>
+    </div>
   )
 }

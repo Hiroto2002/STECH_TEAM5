@@ -49,7 +49,7 @@ export default function WhiteBoard() {
   }
 
   return (
-    <>
+    <div>
       <Head>
         <script src="https://sdk.netless.link/white-web-sdk/2.15.16.js"></script>
       </Head>
@@ -69,7 +69,7 @@ export default function WhiteBoard() {
           <div id="whiteboard" style={{ width: '100%', height: '100vh' }}></div>
         </>
       )}
-    </>
+    </div>
   )
 }
 
