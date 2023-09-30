@@ -21,6 +21,7 @@ export default function WhiteBoard() {
     createdAt: '',
     limit: 0,
   })
+  const [isWhiteBoard, setIsWhiteBoard] = useState<boolean>(false)
   const [roomApplicationToken, setRoomID] = useState<string>('')
 
   // roomへのjoinは成功してるけど、ホワイトボードに飛べてない。
@@ -42,6 +43,7 @@ export default function WhiteBoard() {
         // room.bindHtmlElement(document.getElementById('whiteboard'))
         const whiteboardElement = document.getElementById('whiteboard')
         room.bindHtmlElement(whiteboardElement as HTMLDivElement)
+        setIsWhiteBoard(true)
       })
       .catch(function (err) {
         console.error(err)
@@ -49,24 +51,70 @@ export default function WhiteBoard() {
   }
 
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <Head>
         <script src="https://sdk.netless.link/white-web-sdk/2.15.16.js"></script>
       </Head>
-      <button onClick={() => onCreateRoom(setData)}>ルーム作成</button>
-      <button onClick={() => onGetRoomToken(data.uuid, setRoomID)}>
-        ルームに参加のためのトークンを発行
-      </button>
-      <button onClick={() => onJoinRoom(data.uuid, roomApplicationToken)}>
-        ルームに参加
-      </button>
+      <div
+        style={{
+          display: 'flex',
+          gap: '20px',
+          width: '100%',
+          justifyContent: 'center',
+          margin: '20px 0',
+        }}
+      >
+        <button
+          onClick={() => onCreateRoom(setData)}
+          style={{
+            border: 'none',
+            background: '#33cc99',
+            borderRadius: '10px',
+            color: '#fff',
+            padding: '10px',
+          }}
+        >
+          ルーム作成
+        </button>
+        <button
+          onClick={() => onGetRoomToken(data.uuid, setRoomID)}
+          style={{
+            border: 'none',
+            background: '#33cc99',
+            borderRadius: '10px',
+            color: '#fff',
+            padding: '10px',
+          }}
+        >
+          ルームに参加のためのトークンを発行
+        </button>
+        <button
+          onClick={() => onJoinRoom(data.uuid, roomApplicationToken)}
+          style={{
+            border: 'none',
+            background: '#33cc99',
+            borderRadius: '10px',
+            color: '#fff',
+            padding: '10px',
+          }}
+        >
+          ルームに参加
+        </button>
+      </div>
       {typeof data === 'string' ? (
         'ルームを作成してください'
       ) : (
         <>
           <div>ルームID {data.uuid}</div>
           <div>ルーム申請Token: {roomApplicationToken}</div>
-          <div id="whiteboard" style={{ width: '100%', height: '100vh' }}></div>
+          <div
+            id="whiteboard"
+            style={
+              isWhiteBoard
+                ? { width: '100%', height: '100vh', background: '#fff' }
+                : {}
+            }
+          ></div>
         </>
       )}
     </div>
