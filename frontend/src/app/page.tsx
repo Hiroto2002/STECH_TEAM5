@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from './_components/Button'
 import { NAV_BUTTONS } from '@/constant/NAV_BUTTONS'
 // import dynamic from 'next/dynamic'
@@ -9,7 +9,11 @@ import { NAV_BUTTONS } from '@/constant/NAV_BUTTONS'
 // })
 
 export default function Home() {
-  localStorage.setItem('user', '1')
+  useEffect(() => {
+    if (localStorage.getItem('user')) return
+    const myId = crypto.randomUUID()
+    localStorage.setItem('user', myId)
+  }, [])
   const [name, setName] = useState('')
 
   return (
