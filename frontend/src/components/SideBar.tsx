@@ -40,7 +40,7 @@ export const SideBar = () => {
                   alignItems: 'center',
                   gap: 15,
                   border: 'none',
-                  borderBottom: '2px solid #ccc',
+                  borderLeft: '5px solid #ccc',
                 }
               : {
                   cursor: 'pointer',
