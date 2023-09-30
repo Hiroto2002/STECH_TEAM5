@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useState } from 'react'
 import { Button } from './_components/Button'
 import { NAV_BUTTONS } from '@/constant/NAV_BUTTONS'
 // import dynamic from 'next/dynamic'
@@ -8,6 +9,13 @@ import { NAV_BUTTONS } from '@/constant/NAV_BUTTONS'
 // })
 
 export default function Home() {
+  useEffect(() => {
+    if (localStorage.getItem('user')) return
+    const myId = crypto.randomUUID()
+    localStorage.setItem('user', myId)
+  }, [])
+  const [name, setName] = useState('')
+
   return (
     <div
       style={{
@@ -18,11 +26,27 @@ export default function Home() {
         justifyContent: 'space-evenly',
       }}
     >
-      {NAV_BUTTONS.map((button) => (
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        style={{
+          position: 'absolute',
+          top: '125px',
+          border: 'none',
+          padding: '10px',
+          borderRadius: '5px',
+          width: '400px',
+        }}
+        placeholder="ユーザー名"
+      />
+      {NAV_BUTTONS.map((button, index) => (
         <Button
-          key={button.title}
+          key={index + 1}
           title={button.title}
-          href={button.href}
+          href={
+            name ? `${button.href}?name=${name}` : `${button.href}?name=NoName`
+          }
           src={button.src}
         />
       ))}
